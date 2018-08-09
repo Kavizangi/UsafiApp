@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Usafi Kenya</string>
+    <string name="btn_link_to_register">Not a member ? Sign up now.</string>
+    <string name="btn_login">Login</string>
+    <string name="title_activity_main2">Main2Activity</string>
+</resources>
