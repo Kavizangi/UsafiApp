@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private CardView agents;
     private CardView customers;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
