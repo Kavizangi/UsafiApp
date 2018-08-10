@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    tools:context=".CommisionsActivity">
+    android:id="@+id/commisionLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="0dp">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -18,4 +19,72 @@
         android:elevation="4dp"
         />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/commissionSummary"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/my_toolbar"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_corner"
+        android:text="Total Commission: Ksh 0"
+        android:fontFamily="@font/poppinslight"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="217dp" />
+
+    <TextView
+        android:id="@+id/Header"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/commissionSummary"
+        android:fontFamily="@font/poppinslight"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Detailed view of the commission is as below:-" />
+
+
+    <TextView
+        android:id="@+id/summary1"
+        android:layout_width="match_parent"
+        android:layout_below="@id/Header"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/rounded_corner1"
+        android:text="Unpaid Commission: Ksh 0"
+        android:fontFamily="@font/poppinslight"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp" />
+
+    <TextView
+        android:id="@+id/summary2"
+        android:layout_width="match_parent"
+        android:layout_below="@id/summary1"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/rounded_corner2"
+        android:text="Pending Commission: Ksh 0"
+        android:fontFamily="@font/poppinslight"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp" />
+
+    <TextView
+        android:id="@+id/summary3"
+        android:layout_width="match_parent"
+        android:layout_below="@id/summary2"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/rounded_corner3"
+        android:text="Paid Commission: Ksh 0"
+        android:fontFamily="@font/poppinslight"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp" />
+
+
+</RelativeLayout>
