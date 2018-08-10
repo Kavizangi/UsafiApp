@@ -143,7 +143,7 @@ public class ProfileActivity extends AppCompatActivity {
 
          id = AppController.getInstance().getUserDetails();
 
-        final ProgressDialog progressDialog = new ProgressDialog(this);
+        final ProgressDialog progressDialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
         progressDialog.setMessage("Fetching...");
         progressDialog.show();
 

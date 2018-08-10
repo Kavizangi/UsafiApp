@@ -131,7 +131,7 @@ public class ProductsActivity extends AppCompatActivity {
         // Server user register url
          String url = "https://adetechresolute.co.ke/usafi/api_retrievedata/products";
 
-        final ProgressDialog progressDialog = new ProgressDialog(this);
+        final ProgressDialog progressDialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
         progressDialog.setMessage("Fetching...");
         progressDialog.show();
 

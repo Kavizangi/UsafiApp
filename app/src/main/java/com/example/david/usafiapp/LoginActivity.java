@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
         if (isConnected) {
 
             // Progress dialog
-            pDialog = new ProgressDialog(this);
+            pDialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
             pDialog.setCancelable(false);
             username = (EditText) findViewById(R.id.Username);
             password = (EditText) findViewById(R.id.Password);
