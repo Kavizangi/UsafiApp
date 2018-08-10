@@ -48,20 +48,6 @@ public class CommisionsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        toolbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent homeIntent = new Intent(CommisionsActivity.this, MainActivity.class);
-                startActivity(homeIntent);
-
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-                finish();
-
-            }
-        });
-
         boolean isConnected = ConnectivityReceiver.isConnected(this);
 
 
@@ -72,7 +58,7 @@ public class CommisionsActivity extends AppCompatActivity {
         }else{
 
             Snackbar snackbar = Snackbar
-                    .make(findViewById(R.id.commisionLayout), "Sorry! Not connected to internet", Snackbar.LENGTH_INDEFINITE)
+                    .make(findViewById(R.id.commisionLayout), "Not connected to internet", Snackbar.LENGTH_INDEFINITE)
                     .setAction("RETRY", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -117,7 +103,7 @@ public class CommisionsActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "Profile Response: " + response.toString());
+                Log.d(TAG, "Commission Response: " + response.toString());
                 progressDialog.dismiss();
 
 
@@ -136,21 +122,25 @@ public class CommisionsActivity extends AppCompatActivity {
 
                         JSONObject user = jObj.getJSONObject("user");
 
-                        commissionSummary.setText("Total Commission: Ksh"+user.getString("total"));
-                        summary1.setText("Unpaid Commission: Ksh"+user.getString("unpaid"));
-                        summary2.setText("Pending Commission: Ksh"+user.getString("pending"));
-                        summary3.setText("Paid Commission: Ksh "+user.getString("paid"));
+                        commissionSummary.setText("Total Commission: Ksh "+user.getString("total"));
+                        summary1.setText("Unpaid: Ksh "+user.getString("unpaid"));
+                        summary2.setText("Pending: Ksh "+user.getString("pending"));
+                        summary3.setText("Paid: Ksh "+user.getString("paid"));
+
+                        summary1.setPaintFlags(summary1.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+                        summary2.setPaintFlags(summary2.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+                        summary3.setPaintFlags(summary3.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
                     } else {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("error_msg");
                         Toast.makeText(getApplicationContext(),
-                                errorMsg, Toast.LENGTH_LONG).show();
+                                "Technical error occurred, tyr later!", Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     // JSON error
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Technical error occurred, tyr later!", Toast.LENGTH_LONG).show();
                 }
 
 
@@ -163,7 +153,7 @@ public class CommisionsActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Profile Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),
-                        "Sorry, try again later", Toast.LENGTH_LONG).show();
+                        "Technical error occurred, tyr later!", Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
             }
         }) {

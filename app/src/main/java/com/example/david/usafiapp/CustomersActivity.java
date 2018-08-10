@@ -21,19 +21,6 @@ public class CustomersActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        toolbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent homeIntent = new Intent(CustomersActivity.this, MainActivity.class);
-                startActivity(homeIntent);
-
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-                finish();
-
-            }
-        });
     }
 
     @Override

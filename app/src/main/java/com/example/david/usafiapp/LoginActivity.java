@@ -125,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
         } else {
 
             Snackbar snackbar = Snackbar
-                    .make(findViewById(R.id.loginLayout), "Sorry! Not connected to internet", Snackbar.LENGTH_LONG)
+                    .make(findViewById(R.id.loginLayout), "Not connected to internet", Snackbar.LENGTH_LONG)
                     .setAction("RETRY", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -190,7 +190,7 @@ public class LoginActivity extends AppCompatActivity {
                         String password = user.getString("password");
 
                         // Inserting row in users table
-                        db.addUser(name, email, uid, created_at, password, type);
+                        db.addUser(name, email, uid, created_at, password);
 
                         // Launch main activity
                         Intent intent = new Intent(LoginActivity.this,

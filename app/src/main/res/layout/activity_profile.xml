@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
+    android:id="@+id/profileLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="0dp">
 
@@ -37,9 +38,8 @@
                 android:layout_height="150dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="centerCrop"
-
-                android:src="@drawable/nav_menu_header_bg"
-                app:srcCompat="@drawable/nav_menu_header_bg" />
+                android:src="@drawable/prof"
+                app:srcCompat="@drawable/prof" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -64,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/header_cover_image"
-                android:background="#ccc"
+                android:background="#03C6D8"
                 android:elevation="4dp"
                 android:paddingBottom="24dp">
 
@@ -87,6 +87,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="70dp"
+                    android:fontFamily="@font/poppinslight"
                     android:text="N/A"
                     android:textColor="#fff"
                     android:textSize="24sp"
@@ -97,6 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/name"
+                    android:fontFamily="@font/poppinslight"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:text="N/A"
@@ -126,6 +128,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:clickable="true"
+                    android:fontFamily="@font/poppinslight"
                     android:text="Mobile: N/A"
                     android:textStyle="bold"
                     android:layout_marginLeft="25dp"
@@ -139,6 +142,7 @@
                     android:layout_margin="5dp"
                     android:clickable="true"
                     android:text="Email: N/A"
+                    android:fontFamily="@font/poppinslight"
                     android:textStyle="bold"
                     android:layout_marginLeft="8dp"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -149,6 +153,7 @@
                     android:id="@+id/referrers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppinslight"
                     android:layout_marginTop="5dp"
                     android:clickable="true"
                     android:text="Total Referres: N/A"
@@ -162,6 +167,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:fontFamily="@font/poppinslight"
                     android:clickable="true"
                     android:text="Total Commission Earned:N/A"
                     android:textStyle="bold"
@@ -175,6 +181,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:clickable="true"
+                    android:fontFamily="@font/poppinslight"
                     android:text="County:N/A"
                     android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@+id/commission"
@@ -187,6 +194,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:clickable="true"
+                    android:fontFamily="@font/poppinslight"
                     android:text="Subcounty:N/A"
                     android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@+id/county"
@@ -199,6 +207,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:clickable="true"
+                    android:fontFamily="@font/poppinslight"
                     android:text="Joined On:N/A"
                     android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@+id/subcounty"

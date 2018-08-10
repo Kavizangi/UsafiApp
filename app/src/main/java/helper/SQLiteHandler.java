@@ -32,7 +32,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     private static final String KEY_NAME = "name";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_UID = "uid";
-    private static final String KEY_TYPE = "type";
     private static final String KEY_CREATED_AT = "created_at";
     private static final String KEY_PASSWORD = "password";
 
@@ -65,13 +64,12 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     /**
      * Storing user details in database
      * */
-    public void addUser(String name, String email, String uid, String created_at, String password, String type) {
+    public void addUser(String name, String email, String uid, String created_at, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, name); // Name
         values.put(KEY_EMAIL, email); // Email
-        values.put(KEY_TYPE, type);
         values.put(KEY_UID, uid); // UID
         values.put(KEY_CREATED_AT, created_at); // Created At
         values.put(KEY_PASSWORD, password); // PASS

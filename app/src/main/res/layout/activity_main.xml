@@ -67,10 +67,10 @@
                             android:gravity="center">
 
                             <ImageView
-                                android:layout_width="44dp"
-                                android:layout_height="44dp"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
                                 android:padding="10dp"
-                                android:src="@drawable/ic_add_shopping_cart_black_24dp" />
+                                android:src="@drawable/sale" />
                         </LinearLayout>
 
                         <TextView
@@ -125,10 +125,10 @@
                             android:gravity="center">
 
                             <ImageView
-                                android:layout_width="44dp"
-                                android:layout_height="44dp"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
                                 android:padding="10dp"
-                                android:src="@drawable/ic_group_black_24dp" />
+                                android:src="@drawable/peoples" />
                         </LinearLayout>
 
                         <TextView
@@ -191,10 +191,10 @@
                             android:gravity="center">
 
                             <ImageView
-                                android:layout_width="44dp"
-                                android:layout_height="44dp"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
                                 android:padding="10dp"
-                                android:src="@drawable/ic_layers_black_24dp" />
+                                android:src="@drawable/products" />
                         </LinearLayout>
 
                         <TextView
@@ -247,10 +247,10 @@
                             android:gravity="center">
 
                             <ImageView
-                                android:layout_width="44dp"
-                                android:layout_height="44dp"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
                                 android:padding="10dp"
-                                android:src="@drawable/ic_group_add_black_24dp" />
+                                android:src="@drawable/peoples" />
                         </LinearLayout>
 
                         <TextView
@@ -312,10 +312,10 @@
                             android:gravity="center">
 
                             <ImageView
-                                android:layout_width="44dp"
-                                android:layout_height="44dp"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
                                 android:padding="10dp"
-                                android:src="@drawable/ic_account_balance_wallet_black_24dp" />
+                                android:src="@drawable/wallet" />
                         </LinearLayout>
 
                         <TextView
@@ -338,7 +338,7 @@
                             android:text="View My Commissions"
                             android:fontFamily="@font/poppinslight"
                             android:textSize="10dp"
-                            android:textColor="#72FF3C" />
+                            android:textColor="@android:color/darker_gray" />
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>

@@ -46,21 +46,6 @@ public class ProductsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        toolbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent homeIntent = new Intent(ProductsActivity.this, MainActivity.class);
-                startActivity(homeIntent);
-
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-                finish();
-
-            }
-        });
-
-
         // recycler view
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -75,7 +60,7 @@ public class ProductsActivity extends AppCompatActivity {
 
         // horizontal RecyclerView
         // keep movie_list_row.xml width to `wrap_content`
-        // RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+        // RecyclerView.LayoutManager mLayoutManager = add LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
 
         recyclerView.setLayoutManager(mLayoutManager);
 
@@ -83,7 +68,7 @@ public class ProductsActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
         // adding custom divider line with padding 16dp
-        // recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.HORIZONTAL, 16));
+        // recyclerView.addItemDecoration(add MyDividerItemDecoration(this, LinearLayoutManager.HORIZONTAL, 16));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         recyclerView.setAdapter(mAdapter);
@@ -97,7 +82,7 @@ public class ProductsActivity extends AppCompatActivity {
         }else{
 
             Snackbar snackbar = Snackbar
-                    .make(findViewById(R.id.productLayout), "Sorry! Not connected to internet", Snackbar.LENGTH_INDEFINITE)
+                    .make(findViewById(R.id.productLayout), "Not connected to internet", Snackbar.LENGTH_INDEFINITE)
                     .setAction("RETRY", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -154,7 +139,7 @@ public class ProductsActivity extends AppCompatActivity {
                 }
 
                 // notify adapter about data set changes
-                // so that it will render the list with new data
+                // so that it will render the list with add data
 
                 mAdapter.notifyDataSetChanged();
                 progressDialog.dismiss();
@@ -164,7 +149,7 @@ public class ProductsActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.e("Volley", error.toString());
                 Toast.makeText(getApplicationContext(),
-                        "Sorry, an error occurred. Try again later!", Toast.LENGTH_LONG).show();
+                        "Technical error occurred, tyr later!", Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
 
                 Intent homeIntent = new Intent(ProductsActivity.this, MainActivity.class);

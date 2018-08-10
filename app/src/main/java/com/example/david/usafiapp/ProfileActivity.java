@@ -35,12 +35,14 @@ import java.util.Map;
 import app.AppConfig;
 import app.AppController;
 import helper.SQLiteHandler;
+import helper.SessionManager;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
     private SQLiteHandler db;
+    private SessionManager session;
 
     private String id;
 
@@ -58,21 +60,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-        toolbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent homeIntent = new Intent(ProfileActivity.this, MainActivity.class);
-                startActivity(homeIntent);
-
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-                finish();
-
-            }
-        });
-
 
         ImageView editProfile = (ImageView) findViewById(R.id.editProfile);
 
@@ -107,29 +94,28 @@ public class ProfileActivity extends AppCompatActivity {
 
             }else{
 
-            Snackbar snackbar = Snackbar
-                    .make(findViewById(R.id.productLayout), "Sorry! Not connected to internet", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("RETRY", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
+                Snackbar snackbar = Snackbar
+                        .make(findViewById(R.id.profileLayout), "Not connected to internet", Snackbar.LENGTH_INDEFINITE)
+                        .setAction("RETRY", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
 
-                            Intent homeIntent = new Intent(ProfileActivity.this, ProfileActivity.class);
-                            startActivity(homeIntent);
+                                Intent homeIntent = new Intent(ProfileActivity.this, ProfileActivity.class);
+                                startActivity(homeIntent);
 
-                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
-                            finish();
+                                finish();
 
-                        }
-                    });
+                            }
+                        });
 
-            // Changing message text color
-            snackbar.setActionTextColor(Color.RED);
-            snackbar.getView().setBackgroundColor(Color.rgb(0,0, 5));
+                snackbar.setActionTextColor(Color.RED);
+                snackbar.getView().setBackgroundColor(Color.rgb(0,0, 5));
 
-            snackbar.show();
+                snackbar.show();
 
-        }
+            }
 
     }
 
@@ -141,7 +127,7 @@ public class ProfileActivity extends AppCompatActivity {
         // Server user register url
         String url = "https://adetechresolute.co.ke/usafi/api_retrievedata/profile";
 
-         id = AppController.getInstance().getUserDetails();
+          id = AppController.getInstance().getUserDetails();
 
         final ProgressDialog progressDialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
         progressDialog.setMessage("Fetching...");
@@ -153,6 +139,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Log.d(TAG, "Profile Response: " + response.toString());
+
                 progressDialog.dismiss();
 
 
@@ -191,15 +178,15 @@ public class ProfileActivity extends AppCompatActivity {
 
 
                     } else {
-                        // Error in login. Get the error message
+                        // Error in Get the error message
                         String errorMsg = jObj.getString("error_msg");
                         Toast.makeText(getApplicationContext(),
-                                errorMsg, Toast.LENGTH_LONG).show();
+                                "Technical error occurred, tyr later!", Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     // JSON error
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Technical error occurred, tyr later!", Toast.LENGTH_LONG).show();
                 }
 
 
@@ -212,7 +199,7 @@ public class ProfileActivity extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     Log.e(TAG, "Profile Error: " + error.getMessage());
                     Toast.makeText(getApplicationContext(),
-                            "Sorry, try again later", Toast.LENGTH_LONG).show();
+                            "Technical error occurred, tyr later!", Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
                 }
             }) {

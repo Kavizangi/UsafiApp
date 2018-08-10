@@ -51,20 +51,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        toolbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent homeIntent = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(homeIntent);
-
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-                finish();
-
-            }
-        });
-
 
         // Handling all dashboard clicks
 
