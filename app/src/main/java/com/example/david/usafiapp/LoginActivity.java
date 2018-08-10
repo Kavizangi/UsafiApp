@@ -184,12 +184,13 @@ public class LoginActivity extends AppCompatActivity {
                         JSONObject user = jObj.getJSONObject("user");
                         String name = user.getString("name");
                         String email = user.getString("email");
+                        String type = user.getString("type");
                         String created_at = user
                                 .getString("created_at");
                         String password = user.getString("password");
 
                         // Inserting row in users table
-                        db.addUser(name, email, uid, created_at, password);
+                        db.addUser(name, email, uid, created_at, password, type);
 
                         // Launch main activity
                         Intent intent = new Intent(LoginActivity.this,
@@ -205,7 +206,7 @@ public class LoginActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     // JSON error
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Technical error occurred, tyr later!", Toast.LENGTH_LONG).show();
                 }
 
             }
