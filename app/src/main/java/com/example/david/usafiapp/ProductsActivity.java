@@ -97,7 +97,7 @@ public class ProductsActivity extends AppCompatActivity {
         }else{
 
             Snackbar snackbar = Snackbar
-                    .make(findViewById(R.id.loginLayout), "Sorry! Not connected to internet", Snackbar.LENGTH_LONG)
+                    .make(findViewById(R.id.productLayout), "Sorry! Not connected to internet", Snackbar.LENGTH_INDEFINITE)
                     .setAction("RETRY", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -164,8 +164,16 @@ public class ProductsActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.e("Volley", error.toString());
                 Toast.makeText(getApplicationContext(),
-                        error.toString(), Toast.LENGTH_LONG).show();
+                        "Sorry, an error occurred. Try again later!", Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
+
+                Intent homeIntent = new Intent(ProductsActivity.this, MainActivity.class);
+                startActivity(homeIntent);
+
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
+                finish();
+
             }
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);

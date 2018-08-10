@@ -44,7 +44,7 @@
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/salesCard"
                     android:layout_width="140dp"
-                    android:layout_height="150dp"
+                    android:layout_height="100dp"
                     android:layout_margin="10dp"
                     android:background="#FFF"
                     android:clickable="true"
@@ -62,13 +62,13 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
+                            android:layout_height="50dp"
                             android:background="#FFF"
                             android:gravity="center">
 
                             <ImageView
-                                android:layout_width="94dp"
-                                android:layout_height="94dp"
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
                                 android:padding="10dp"
                                 android:src="@drawable/ic_add_shopping_cart_black_24dp" />
                         </LinearLayout>
@@ -102,7 +102,7 @@
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/agentsCard"
                     android:layout_width="140dp"
-                    android:layout_height="150dp"
+                    android:layout_height="100dp"
                     android:layout_margin="10dp"
                     android:background="#FFF"
                     android:clickable="true"
@@ -120,13 +120,13 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
+                            android:layout_height="50dp"
                             android:background="#FFF"
                             android:gravity="center">
 
                             <ImageView
-                                android:layout_width="94dp"
-                                android:layout_height="94dp"
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
                                 android:padding="10dp"
                                 android:src="@drawable/ic_group_black_24dp" />
                         </LinearLayout>
@@ -171,7 +171,7 @@
                     card_view:cardElevation="3dp"
                     android:id="@+id/productsCard"
                     android:layout_width="140dp"
-                    android:layout_height="150dp"
+                    android:layout_height="100dp"
                     android:layout_margin="10dp"
                     android:background="#FFF"
                     android:clickable="true"
@@ -186,13 +186,13 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
+                            android:layout_height="50dp"
                             android:background="#FFF"
                             android:gravity="center">
 
                             <ImageView
-                                android:layout_width="94dp"
-                                android:layout_height="94dp"
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
                                 android:padding="10dp"
                                 android:src="@drawable/ic_layers_black_24dp" />
                         </LinearLayout>
@@ -228,7 +228,7 @@
                     card_view:cardElevation="3dp"
                     android:id="@+id/customersCard"
                     android:layout_width="140dp"
-                    android:layout_height="150dp"
+                    android:layout_height="100dp"
                     android:layout_margin="10dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
@@ -242,13 +242,13 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
+                            android:layout_height="50dp"
                             android:background="#FFF"
                             android:gravity="center">
 
                             <ImageView
-                                android:layout_width="94dp"
-                                android:layout_height="94dp"
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
                                 android:padding="10dp"
                                 android:src="@drawable/ic_group_add_black_24dp" />
                         </LinearLayout>
@@ -292,8 +292,8 @@
                     card_view:cardCornerRadius="8dp"
                     card_view:cardElevation="3dp"
                     android:id="@+id/commissionCard"
-                    android:layout_width="140dp"
-                    android:layout_height="150dp"
+                    android:layout_width="160dp"
+                    android:layout_height="100dp"
                     android:layout_margin="10dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
@@ -307,13 +307,13 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
+                            android:layout_height="50dp"
                             android:background="#FFF"
                             android:gravity="center">
 
                             <ImageView
-                                android:layout_width="94dp"
-                                android:layout_height="94dp"
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
                                 android:padding="10dp"
                                 android:src="@drawable/ic_account_balance_wallet_black_24dp" />
                         </LinearLayout>

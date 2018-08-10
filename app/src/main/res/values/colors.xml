@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#72FF3C</color>
-    <color name="colorPrimaryDark">#44f200</color>
+    <color name="colorPrimary">#008000</color>
+    <color name="colorPrimaryDark">#006400</color>
+    <color name="colorPrimaryStartDark">#006400</color>
+    <color name="colorPrimaryStart">#008000</color>
     <color name="colorAccent">#FF4081</color>
     <color name="input_login_hint">#999999</color>
     <color name="borderColor">#4A77D4</color>
@@ -15,4 +17,5 @@
     <color name="lightgray">#808080</color>
     <color name="year">#999999</color>
     <color name="title">#222222</color>
+    <color name="colorforedit">#72FF3C</color>
 </resources>

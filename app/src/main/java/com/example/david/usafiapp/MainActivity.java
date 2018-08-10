@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 // Launching the  activity
                 Intent intent = new Intent(MainActivity.this, ProductsActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 finish();
             }
         });
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 // Launching the  activity
                 Intent intent = new Intent(MainActivity.this, AgentsActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 finish();
             }
         });
@@ -101,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 // Launching the  activity
                 Intent intent = new Intent(MainActivity.this, CustomersActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 finish();
             }
         });
@@ -111,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 // Launching the  activity
                 Intent intent = new Intent(MainActivity.this, CommisionsActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 finish();
             }
         });
@@ -121,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 // Launching the  activity
                 Intent intent = new Intent(MainActivity.this, SalesActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 finish();
             }
         });
@@ -173,8 +178,11 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_account:
 
-                Toast.makeText(getApplicationContext(),
-                        "Coming soon!", Toast.LENGTH_SHORT).show();
+                // Launching the  activity
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                finish();
 
                 return true;
             default:

@@ -8,12 +8,10 @@ package helper;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.util.HashMap;
 
 public class SQLiteHandler extends SQLiteOpenHelper {
 
@@ -83,35 +81,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         Log.d(TAG, "New user inserted into sqlite: " + id);
     }
 
-    /**
-     * Getting user data from database
-     * */
-    public HashMap<String, String> getUserDetails() {
-        HashMap<String, String> user = new HashMap<String, String>();
-        String selectQuery = "SELECT  * FROM " + TABLE_USER;
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        // Move to first row
-        cursor.moveToFirst();
-        if (cursor.getCount() > 0) {
-            user.put("name", cursor.getString(1));
-            user.put("email", cursor.getString(2));
-            user.put("uid", cursor.getString(3));
-            user.put("created_at", cursor.getString(4));
-            user.put("password", cursor.getString(5));
-        }
-        cursor.close();
-        db.close();
-        // return user
-        Log.d(TAG, "Fetching user from Sqlite: " + user.toString());
-
-        return user;
-    }
-
-    /**
-     * Re crate database Delete all tables and create them again
-     * */
     public void deleteUsers() {
         SQLiteDatabase db = this.getWritableDatabase();
         // Delete All Rows

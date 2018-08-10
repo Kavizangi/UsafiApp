@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#72FF3C"
+    android:background="#008000"
     tools:context=".SplashActivity">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/imageView"
         android:fontFamily="@font/poppinslight"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:text="USAFI KENYA"
         android:textColor="#fff"
         android:textSize="36sp"

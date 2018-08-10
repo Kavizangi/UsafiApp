@@ -3,6 +3,7 @@ package com.example.david.usafiapp;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.content.Intent;
@@ -69,9 +70,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getApplicationContext(),
-                        "Coming soon!", Toast.LENGTH_SHORT)
-                        .show();
+                Uri uri = Uri.parse("https://adetechresolute.co.ke/usafi/register/selfregister"); // missing 'http://' will cause crash
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
 

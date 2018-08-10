@@ -42,7 +42,8 @@
         <activity android:name=".AgentsActivity" />
         <activity android:name=".CustomersActivity" />
         <activity android:name=".CommisionsActivity" />
-        <activity android:name=".SalesActivity"></activity>
+        <activity android:name=".SalesActivity" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>
