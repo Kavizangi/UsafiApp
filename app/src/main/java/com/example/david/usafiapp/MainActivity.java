@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Launching the  activity
-                Intent intent = new Intent(MainActivity.this, AgentsActivity.class);
+                Intent intent = new Intent(MainActivity.this, AgentsviewActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 finish();

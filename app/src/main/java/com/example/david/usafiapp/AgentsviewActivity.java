@@ -171,7 +171,7 @@ public class AgentsviewActivity extends AppCompatActivity {
     public void onBackPressed() {
         // do something on back.
 
-        Intent homeIntent = new Intent(AgentsviewActivity.this, AgentsActivity.class);
+        Intent homeIntent = new Intent(AgentsviewActivity.this, MainActivity.class);
         startActivity(homeIntent);
 
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
