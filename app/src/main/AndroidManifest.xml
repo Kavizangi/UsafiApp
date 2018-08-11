@@ -14,8 +14,8 @@
 
     <application
         android:name="app.AppController"
-        android:hardwareAccelerated="true"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -44,7 +44,9 @@
         <activity android:name=".CustomersActivity" />
         <activity android:name=".CommisionsActivity" />
         <activity android:name=".SalesActivity" />
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".AgentsviewActivity" />
+        <activity android:name=".CustomersviewActivity"></activity>
     </application>
 
 </manifest>
