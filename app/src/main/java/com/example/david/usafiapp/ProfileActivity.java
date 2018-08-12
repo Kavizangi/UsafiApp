@@ -1,14 +1,28 @@
 package com.example.david.usafiapp;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,6 +42,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private SQLiteHandler db;
     private SessionManager session;
+    private static final String TABLE_USER = "user";
 
     private String id;
 
@@ -61,29 +80,51 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        TextView name = (TextView) findViewById(R.id.name);
+        TextView mobile = (TextView) findViewById(R.id.mobile);
+        TextView type = (TextView) findViewById(R.id.type);
+
+        mobile.setText("Mobile No: "+AppController.getInstance().getUserEmail());
+        type.setText(AppController.getInstance().getUserType());
+        name.setText(AppController.getInstance().getUserName());
+
         ImageView editProfile = (ImageView) findViewById(R.id.editProfile);
 
         editProfile.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // your code here
-
-                Toast.makeText(getApplicationContext(), "Note: Coming soon" , Toast.LENGTH_LONG).show();
+                // Launching the  activity
+                Intent intent = new Intent(ProfileActivity.this, ProfileeditActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                finish();
 
             }
         });
 
         ImageView editIcon = (ImageView) findViewById(R.id.profile);
 
-        editIcon.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // your code here
+        if(AppController.getInstance().getUserProfile()==null)
+        {
 
-                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(galleryIntent, PICK_IMAGE);
+            editIcon.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    // your code here
 
-            }
-        });
+                    ActivityCompat.requestPermissions(ProfileActivity.this,
+                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            1);
+
+                    Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(galleryIntent, PICK_IMAGE);
+
+                }
+            });
+
+        }else{
+            editIcon.setImageBitmap(StringToBitMap(AppController.getInstance().getUserProfile()));
+        }
 
         boolean isConnected = ConnectivityReceiver.isConnected(this);
 
@@ -130,7 +171,7 @@ public class ProfileActivity extends AppCompatActivity {
           id = AppController.getInstance().getUserDetails();
 
         final ProgressDialog progressDialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
-        progressDialog.setMessage("Fetching...");
+        progressDialog.setMessage("Please wait...");
         progressDialog.show();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
@@ -181,12 +222,11 @@ public class ProfileActivity extends AppCompatActivity {
                         // Error in Get the error message
                         String errorMsg = jObj.getString("error_msg");
                         Toast.makeText(getApplicationContext(),
-                                "Technical error occurred, tyr later!", Toast.LENGTH_LONG).show();
+                                errorMsg, Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     // JSON error
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Technical error occurred, tyr later!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Please try again!", Toast.LENGTH_LONG).show();
                 }
 
 
@@ -199,7 +239,7 @@ public class ProfileActivity extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     Log.e(TAG, "Profile Error: " + error.getMessage());
                     Toast.makeText(getApplicationContext(),
-                            "Technical error occurred, tyr later!", Toast.LENGTH_LONG).show();
+                            error.getMessage(), Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
                 }
             }) {
@@ -243,10 +283,148 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-        if (requestCode == PICK_IMAGE) {
-            //TODO: action
+        super.onActivityResult(requestCode, resultCode, data);
 
-            Toast.makeText(getApplicationContext(), "Upload Coming Soon!", Toast.LENGTH_LONG).show();
+         String selectedImagePath, filemanagerstring;
+         File myFile = null;
+        final ProgressDialog progressDialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
+        progressDialog.setMessage("Please wait...");
+        progressDialog.show();
+
+        try {
+            switch (requestCode) {
+
+                case PICK_IMAGE:
+                    if (resultCode == Activity.RESULT_OK) {
+
+                        Uri selectedImageUri = data.getData();
+                        filemanagerstring = selectedImageUri.getPath();
+                        selectedImagePath = getPath(selectedImageUri);
+
+                        progressDialog.show();
+
+                        if (selectedImagePath != null)
+                            myFile = new File(selectedImagePath);
+                        else if (filemanagerstring != null)
+                            myFile = new File(filemanagerstring);
+
+                        if (myFile != null) {
+
+                            Bitmap bitmap = null;
+                            BitmapFactory.Options options = new BitmapFactory.Options();
+                            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+
+                            try {
+                                bitmap = BitmapFactory.decodeStream(new FileInputStream(myFile), null, options);
+                            } catch (FileNotFoundException e) {
+
+                                Toast.makeText(getApplicationContext(),
+                                        e.getMessage(), Toast.LENGTH_LONG).show();
+
+                            }
+
+                            ImageView prof_pic = (ImageView) findViewById(R.id.profile);
+
+                            prof_pic.setImageBitmap(bitmap);
+
+                            // saving to sqlite
+
+                            SQLiteHandler helper = new SQLiteHandler(this);
+
+                            SQLiteDatabase dbs = helper.getReadableDatabase();
+
+                            id = AppController.getInstance().getUserDetails();
+
+                            ContentValues cv = new ContentValues();
+                            cv.put("pic", BitMapToString(bitmap));
+                            dbs.update(TABLE_USER, cv, "uid="+id, null);
+
+                            dbs.close(); // Closing database connection
+
+                            progressDialog.dismiss();
+
+
+                        } else {
+
+                            Toast.makeText(getApplicationContext(),
+                                    "is null", Toast.LENGTH_LONG).show();
+
+                        }
+
+                        break;
+                    } else if (resultCode == Activity.RESULT_CANCELED) {
+                        Log.e(TAG, "Selecting picture cancelled");
+
+                        Toast.makeText(getApplicationContext(),
+                                "Selecting picture cancelled", Toast.LENGTH_LONG).show();
+                    }
+                    break;
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Exception in onActivityResult : " + e.getMessage());
+
+            Toast.makeText(getApplicationContext(),
+                    "Exception in onActivityResult : " + e.getMessage(), Toast.LENGTH_LONG).show();
+
+        }
+
+    }
+
+    public String getPath(Uri uri) {
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Toast.makeText(ProfileActivity.this, "Enable that permission, to upload your profile", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
+
+
+    public String BitMapToString(Bitmap bitmap){
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+        byte [] b=baos.toByteArray();
+        String temp= Base64.encodeToString(b, Base64.DEFAULT);
+        return temp;
+    }
+
+    /**
+     * @param encodedString
+     * @return bitmap (from given string)
+     */
+    public Bitmap StringToBitMap(String encodedString){
+        try {
+            byte [] encodeByte=Base64.decode(encodedString,Base64.DEFAULT);
+            Bitmap bitmap=BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch(Exception e) {
+            e.getMessage();
+            return null;
         }
     }
 

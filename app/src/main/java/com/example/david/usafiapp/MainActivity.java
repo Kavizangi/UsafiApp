@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import app.AppController;
 import helper.SQLiteHandler;
 import helper.SessionManager;
 
@@ -60,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
         commisions = (CardView) findViewById(R.id.commissionCard);
         sales = (CardView) findViewById(R.id.salesCard);
 
+        if(AppController.getInstance().getUserType().equals("agent")) {
+            agents.setVisibility(View.GONE);
+        }
 
         products.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFB"
+    android:id="@+id/customersaddLayout"
+    tools:context=".LoginActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:fontFamily="@font/poppinslight"
+        style="@style/HeaderBar"
+        app:theme="@style/MainTheme"
+        app:titleTextColor="@color/white"
+        android:elevation="4dp"
+        />
+
+    <TextView
+        android:id="@+id/textViewp"
+        android:layout_width="wrap_content"
+        android:fontFamily="@font/poppinslight"
+        android:textSize="20sp"
+        android:layout_below="@id/my_toolbar"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="Register Customer" />
+
+    <EditText
+        android:id="@+id/fullnames"
+        android:layout_width="276dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/textViewp"
+        android:fontFamily="@font/poppinslight"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/rounded_border_edittext"
+        android:hint="Customers Full Names"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/mobileno"
+        android:layout_width="276dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/fullnames"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/poppinslight"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_border_edittext"
+        android:hint="Mobile Number"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/county"
+        android:layout_width="276dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/mobileno"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/poppinslight"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_border_edittext"
+        android:hint="County"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/subcounty"
+        android:layout_width="276dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/county"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/poppinslight"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_border_edittext"
+        android:hint="Sub County"
+        android:inputType="textPersonName" />
+    <EditText
+        android:id="@+id/location"
+        android:layout_width="276dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/subcounty"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/poppinslight"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_border_edittext"
+        android:hint="Location"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/Save"
+        android:layout_width="195dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:layout_below="@+id/location"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_border_button"
+        android:text="Save"
+        android:textColor="#fff" />
+
+
+</RelativeLayout>

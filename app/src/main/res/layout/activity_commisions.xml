@@ -27,6 +27,7 @@
         android:layout_below="@id/my_toolbar"
         android:gravity="center"
         android:layout_marginTop="20dp"
+        android:textSize="20sp"
         android:background="@drawable/rounded_corner"
         android:text="Total Commission: Ksh 0"
         android:fontFamily="@font/poppinslight"
@@ -89,6 +90,18 @@
         android:fontFamily="@font/poppinslight"
         android:layout_marginRight="40dp"
         android:layout_marginLeft="40dp" />
+
+    <Button
+        android:id="@+id/Login"
+        android:layout_width="155dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:layout_below="@+id/summary3"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_border_button"
+        android:text="Withdraw Now"
+        android:textColor="#fff" />
 
 
 </RelativeLayout>

@@ -69,12 +69,91 @@ public class AppController extends Application {
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         //if TABLE has rows
-        if (cursor.moveToFirst()) {
+        if (cursor.moveToFirst() && cursor.getCount() != 0) {
 
             arrData = cursor.getString(3);
         }
         db.close();
         return arrData;
     }
+
+    public String getUserType() {
+
+        String arrData = null;
+
+        String selectQuery = "SELECT * FROM " + TABLE_USER;
+
+        SQLiteHandler helper = new SQLiteHandler(this);
+
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        //if TABLE has rows
+        if (cursor.moveToFirst() && cursor.getCount() != 0) {
+
+            arrData = cursor.getString(5);
+        }
+        db.close();
+        return arrData;
+    }
+
+    public String getUserProfile() {
+
+        String arrData = null;
+
+        String selectQuery = "SELECT * FROM " + TABLE_USER;
+
+        SQLiteHandler helper = new SQLiteHandler(this);
+
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        //if TABLE has rows
+        if (cursor.moveToFirst() && cursor.getCount() != 0) {
+
+            arrData = cursor.getString(4);
+        }
+        db.close();
+        return arrData;
+    }
+
+    public String getUserEmail(){
+        String arrData = null;
+
+        String selectQuery = "SELECT * FROM " + TABLE_USER;
+
+        SQLiteHandler helper = new SQLiteHandler(this);
+
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        //if TABLE has rows
+        if (cursor.moveToFirst() && cursor.getCount() != 0) {
+
+            arrData = cursor.getString(2);
+        }
+        db.close();
+        return arrData;
+    }
+
+    public String getUserName(){
+        String arrData = null;
+
+        String selectQuery = "SELECT * FROM " + TABLE_USER;
+
+        SQLiteHandler helper = new SQLiteHandler(this);
+
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        //if TABLE has rows
+        if (cursor.moveToFirst() && cursor.getCount() != 0) {
+
+            arrData = cursor.getString(1);
+        }
+        db.close();
+        return arrData;
+    }
+
 
 }

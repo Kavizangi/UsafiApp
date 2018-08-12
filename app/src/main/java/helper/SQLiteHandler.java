@@ -11,6 +11,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.util.Printer;
 
 
 public class SQLiteHandler extends SQLiteOpenHelper {
@@ -34,6 +35,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     private static final String KEY_UID = "uid";
     private static final String KEY_CREATED_AT = "created_at";
     private static final String KEY_PASSWORD = "password";
+    private  static final String KEY_PROFILE = "pic";
+    private  static final String KEY_GROUP = "user_type";
 
     public SQLiteHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -44,7 +47,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_USER + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_EMAIL + " TEXT UNIQUE," + KEY_UID + " TEXT,"
+                + KEY_EMAIL + " TEXT UNIQUE," + KEY_UID + " TEXT,"+ KEY_PROFILE + " TEXT,"+ KEY_GROUP + " TEXT,"
                 + KEY_CREATED_AT + " TEXT," + KEY_PASSWORD + " TEXT" + ")";
         db.execSQL(CREATE_LOGIN_TABLE);
 
@@ -64,13 +67,15 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     /**
      * Storing user details in database
      * */
-    public void addUser(String name, String email, String uid, String created_at, String password) {
+    public void addUser(String name, String email, String uid, String pic, String user_type, String created_at, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, name); // Name
         values.put(KEY_EMAIL, email); // Email
         values.put(KEY_UID, uid); // UID
+        values.put(KEY_PROFILE, pic); // UID
+        values.put(KEY_GROUP, user_type); // UID
         values.put(KEY_CREATED_AT, created_at); // Created At
         values.put(KEY_PASSWORD, password); // PASS
 

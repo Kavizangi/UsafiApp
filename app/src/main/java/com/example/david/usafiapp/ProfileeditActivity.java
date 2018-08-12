@@ -25,14 +25,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import app.AppController;
-import helper.SQLiteHandler;
 
-public class CommisionsActivity extends AppCompatActivity {
+public class ProfileeditActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-
-    private SQLiteHandler db;
-
     private String id;
 
     private static final String TAG = ProfileActivity.class.getSimpleName();
@@ -40,7 +36,7 @@ public class CommisionsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_commisions);
+        setContentView(R.layout.activity_profileedit);
 
         toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
@@ -48,8 +44,11 @@ public class CommisionsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        boolean isConnected = ConnectivityReceiver.isConnected(this);
+        TextView textView = (TextView) findViewById(R.id.textViewpx);
 
+        textView.setPaintFlags(textView.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+
+        boolean isConnected = ConnectivityReceiver.isConnected(this);
 
         if (isConnected) {
 
@@ -58,12 +57,12 @@ public class CommisionsActivity extends AppCompatActivity {
         }else{
 
             Snackbar snackbar = Snackbar
-                    .make(findViewById(R.id.commisionLayout), "Not connected to internet", Snackbar.LENGTH_INDEFINITE)
+                    .make(findViewById(R.id.profileeditaddLayout), "Not connected to internet", Snackbar.LENGTH_INDEFINITE)
                     .setAction("RETRY", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 
-                            Intent homeIntent = new Intent(CommisionsActivity.this, CommisionsActivity.class);
+                            Intent homeIntent = new Intent(ProfileeditActivity.this, ProfileActivity.class);
                             startActivity(homeIntent);
 
                             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -81,7 +80,6 @@ public class CommisionsActivity extends AppCompatActivity {
 
         }
 
-
     }
 
     private void prepareData() {
@@ -90,7 +88,7 @@ public class CommisionsActivity extends AppCompatActivity {
         String tag_string_req = "req_profile";
 
         // Server user register url
-        String url = "https://adetechresolute.co.ke/usafi/api_retrievedata/commision";
+        String url = "https://adetechresolute.co.ke/usafi/api_retrievedata/profile";
 
         id = AppController.getInstance().getUserDetails();
 
@@ -103,7 +101,8 @@ public class CommisionsActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "Commission Response: " + response.toString());
+                Log.d(TAG, "Profile Response: " + response.toString());
+
                 progressDialog.dismiss();
 
 
@@ -115,32 +114,33 @@ public class CommisionsActivity extends AppCompatActivity {
                     if (!error) {
 
 
-                        TextView commissionSummary = (TextView) findViewById(R.id.commissionSummary);
-                        TextView summary1 = (TextView) findViewById(R.id.summary1);
-                        TextView summary2 = (TextView) findViewById(R.id.summary2);
-                        TextView summary3 = (TextView) findViewById(R.id.summary3);
+                        TextView name = (TextView) findViewById(R.id.fullnames1);
+                        TextView mobileno = (TextView) findViewById(R.id.mobileno1);
+                        TextView county = (TextView) findViewById(R.id.county1);
+                        TextView subcounty = (TextView) findViewById(R.id.subcounty1);
+                        TextView location = (TextView) findViewById(R.id.location1);
 
                         JSONObject user = jObj.getJSONObject("user");
 
-                        commissionSummary.setText("Total Commission: Ksh "+user.getString("total"));
-                        summary1.setText("Unpaid: Ksh "+user.getString("unpaid"));
-                        summary2.setText("Pending: Ksh "+user.getString("pending"));
-                        summary3.setText("Paid: Ksh "+user.getString("paid"));
+                        name.setText(user.getString("name"));
+                        mobileno.setText(user.getString("mobile"));
+                        county.setText(user.getString("county"));
+                        subcounty.setText(user.getString("subcounty"));
+                        location.setText(user.getString("location"));
 
-                        summary1.setPaintFlags(summary1.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
-                        summary2.setPaintFlags(summary2.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
-                        summary3.setPaintFlags(summary3.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+
+
+
 
                     } else {
-                        // Error in login. Get the error message
+                        // Error in Get the error message
                         String errorMsg = jObj.getString("error_msg");
                         Toast.makeText(getApplicationContext(),
-                                "Technical error occurred, try later!", Toast.LENGTH_LONG).show();
+                                errorMsg, Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     // JSON error
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Technical error occurred, try later!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Please try again!", Toast.LENGTH_LONG).show();
                 }
 
 
@@ -153,7 +153,7 @@ public class CommisionsActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Profile Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),
-                        "Technical error occurred, tyr later!", Toast.LENGTH_LONG).show();
+                        error.getMessage(), Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
             }
         }) {
@@ -178,7 +178,7 @@ public class CommisionsActivity extends AppCompatActivity {
     public void onBackPressed() {
         // do something on back.
 
-        Intent homeIntent = new Intent(CommisionsActivity.this, MainActivity.class);
+        Intent homeIntent = new Intent(ProfileeditActivity.this, ProfileActivity.class);
         startActivity(homeIntent);
 
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -193,4 +193,5 @@ public class CommisionsActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
 }

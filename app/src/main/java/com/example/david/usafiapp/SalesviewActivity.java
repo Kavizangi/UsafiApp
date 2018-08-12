@@ -28,17 +28,17 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomersviewActivity extends AppCompatActivity {
+public class SalesviewActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private List<Agentsview> agentsList = new ArrayList<>();
+    private List<Salesview> agentsList = new ArrayList<>();
     private RecyclerView recyclerView;
-    private AgentsviewAdapter mAdapter;
+    private SalesviewAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customersview);
+        setContentView(R.layout.activity_salesview);
 
         toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
@@ -50,7 +50,7 @@ public class CustomersviewActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        mAdapter = new AgentsviewAdapter(agentsList);
+        mAdapter = new SalesviewAdapter(agentsList);
 
         recyclerView.setHasFixedSize(true);
 
@@ -82,12 +82,12 @@ public class CustomersviewActivity extends AppCompatActivity {
         }else{
 
             Snackbar snackbar = Snackbar
-                    .make(findViewById(R.id.customersLayout), "Not connected to internet", Snackbar.LENGTH_INDEFINITE)
+                    .make(findViewById(R.id.salesLayout), "Not connected to internet", Snackbar.LENGTH_INDEFINITE)
                     .setAction("RETRY", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 
-                            Intent homeIntent = new Intent(CustomersviewActivity.this, CustomersviewActivity.class);
+                            Intent homeIntent = new Intent(SalesviewActivity.this, SalesviewActivity.class);
                             startActivity(homeIntent);
 
                             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -114,7 +114,7 @@ public class CustomersviewActivity extends AppCompatActivity {
     private void prepareData() {
 
         // Server user register url
-        String url = "https://adetechresolute.co.ke/usafi/api_retrievedata/mycustomers";
+        String url = "https://adetechresolute.co.ke/usafi/api_retrievedata/mysales";
 
         final ProgressDialog progressDialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
         progressDialog.setMessage("Fetching...");
@@ -127,8 +127,8 @@ public class CustomersviewActivity extends AppCompatActivity {
                     try {
                         JSONObject jsonObject = response.getJSONObject(i);
 
-                        Agentsview product = new Agentsview();
-                        product.setName(jsonObject.getString("fullnames")+"("+jsonObject.getString("customercode")+")");
+                        Salesview product = new Salesview();
+                        product.setName(jsonObject.getString("customer")+"( Ksh. "+jsonObject.getString("totalcost")+")");
                         product.setDate(jsonObject.getString("createdon"));
 
                         agentsList.add(product);
@@ -149,10 +149,10 @@ public class CustomersviewActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.e("Volley", error.toString());
                 Toast.makeText(getApplicationContext(),
-                        "Technical error occurred, try later!", Toast.LENGTH_LONG).show();
+                        "Technical error occurred, tyr later!", Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
 
-                Intent homeIntent = new Intent(CustomersviewActivity.this, CustomersActivity.class);
+                Intent homeIntent = new Intent(SalesviewActivity.this, SalesActivity.class);
                 startActivity(homeIntent);
 
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -171,7 +171,7 @@ public class CustomersviewActivity extends AppCompatActivity {
     public void onBackPressed() {
         // do something on back.
 
-        Intent homeIntent = new Intent(CustomersviewActivity.this, CustomersActivity.class);
+        Intent homeIntent = new Intent(SalesviewActivity.this, SalesActivity.class);
         startActivity(homeIntent);
 
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);

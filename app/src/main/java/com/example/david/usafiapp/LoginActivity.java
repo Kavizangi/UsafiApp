@@ -188,9 +188,10 @@ public class LoginActivity extends AppCompatActivity {
                         String created_at = user
                                 .getString("created_at");
                         String password = user.getString("password");
+                        String pic = null;
 
                         // Inserting row in users table
-                        db.addUser(name, email, uid, created_at, password);
+                        db.addUser(name, email, uid, pic, type, created_at, password);
 
                         // Launch main activity
                         Intent intent = new Intent(LoginActivity.this,
@@ -206,7 +207,7 @@ public class LoginActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     // JSON error
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Technical error occurred, tyr later!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Sorry, try again later!", Toast.LENGTH_LONG).show();
                 }
 
             }

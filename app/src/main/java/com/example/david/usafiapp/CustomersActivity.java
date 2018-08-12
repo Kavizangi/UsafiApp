@@ -11,6 +11,7 @@ public class CustomersActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private CardView viewcustomerCard;
+    private CardView addcustomerCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,7 @@ public class CustomersActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         viewcustomerCard = (CardView) findViewById(R.id.viewcustomerCard);
+        addcustomerCard = (CardView) findViewById(R.id.addcustomerCard);
 
 
         viewcustomerCard.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +33,17 @@ public class CustomersActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Launching the  activity
                 Intent intent = new Intent(CustomersActivity.this, CustomersviewActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                finish();
+            }
+        });
+
+        addcustomerCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Launching the  activity
+                Intent intent = new Intent(CustomersActivity.this, CustomeraddActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 finish();
