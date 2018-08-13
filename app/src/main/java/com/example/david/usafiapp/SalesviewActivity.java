@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -34,6 +35,7 @@ public class SalesviewActivity extends AppCompatActivity {
     private List<Salesview> agentsList = new ArrayList<>();
     private RecyclerView recyclerView;
     private SalesviewAdapter mAdapter;
+    private RelativeLayout notconnected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,15 +76,20 @@ public class SalesviewActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
 
         boolean isConnected = ConnectivityReceiver.isConnected(this);
+        notconnected = (RelativeLayout) findViewById(R.id.notconnecteInternet);
 
 
         if (isConnected) {
 
+            notconnected.setVisibility(View.GONE);
+
             prepareData();
         }else{
 
+            notconnected.setVisibility(View.VISIBLE);
+
             Snackbar snackbar = Snackbar
-                    .make(findViewById(R.id.salesLayout), "Not connected to internet", Snackbar.LENGTH_INDEFINITE)
+                    .make(findViewById(R.id.salesLayout), "Not connected to internet", Snackbar.LENGTH_SHORT)
                     .setAction("RETRY", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

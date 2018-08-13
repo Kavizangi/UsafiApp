@@ -26,6 +26,7 @@
         android:layout_height="50dp"
         android:layout_below="@id/my_toolbar"
         android:gravity="center"
+        android:textColor="@color/white"
         android:layout_marginTop="20dp"
         android:textSize="20sp"
         android:background="@drawable/rounded_corner"
@@ -93,13 +94,13 @@
 
     <Button
         android:id="@+id/Login"
-        android:layout_width="155dp"
-        android:layout_height="40dp"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
         android:gravity="center"
         android:layout_below="@+id/summary3"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/rounded_border_button"
+        android:background="@drawable/rounded_corner_button1"
         android:text="Withdraw Now"
         android:textColor="#fff" />
 

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FAFAFB"
+    android:scrollbars="vertical"
     android:id="@+id/profileeditaddLayout"
     tools:context=".LoginActivity">
 
@@ -20,18 +21,37 @@
         android:elevation="4dp"
         />
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <RelativeLayout
+            android:id="@+id/rslacv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
     <TextView
         android:id="@+id/textViewpx"
         android:layout_width="wrap_content"
         android:fontFamily="@font/poppinslight"
-        android:textSize="20sp"
-        android:layout_below="@id/my_toolbar"
+        android:textSize="25sp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
         android:text="Edit your account info" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/fullnames1"
+        android:layout_alignStart="@+id/fullnames1"
+        android:fontFamily="@font/poppinslight"
+        android:layout_marginBottom="-30dp"
+        android:text="Your Names"
+        android:layout_alignLeft="@+id/fullnames1" />
 
     <EditText
         android:id="@+id/fullnames1"
@@ -42,8 +62,18 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:background="@drawable/rounded_border_edittext"
-        android:hint="Customers Full Names"
         android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/textViewg2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/mobileno1"
+        android:layout_alignStart="@+id/mobileno1"
+        android:layout_alignLeft="@+id/mobileno1"
+        android:fontFamily="@font/poppinslight"
+        android:layout_marginBottom="-30dp"
+        android:text="Your Mobile No" />
 
     <EditText
         android:id="@+id/mobileno1"
@@ -52,10 +82,20 @@
         android:layout_below="@+id/fullnames1"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/poppinslight"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/rounded_border_edittext"
-        android:hint="Mobile Number"
         android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/textViewgh2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/county1"
+        android:layout_alignStart="@+id/county1"
+        android:fontFamily="@font/poppinslight"
+        android:layout_marginBottom="-30dp"
+        android:text="Your County"
+        android:layout_alignLeft="@+id/county1" />
 
     <EditText
         android:id="@+id/county1"
@@ -64,10 +104,20 @@
         android:layout_below="@+id/mobileno1"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/poppinslight"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/rounded_border_edittext"
-        android:hint="County"
         android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/textViewggh2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/subcounty1"
+        android:layout_alignStart="@+id/subcounty1"
+        android:fontFamily="@font/poppinslight"
+        android:layout_marginBottom="-30dp"
+        android:text="Your Sub County"
+        android:layout_alignLeft="@+id/subcounty1" />
 
     <EditText
         android:id="@+id/subcounty1"
@@ -76,10 +126,21 @@
         android:layout_below="@+id/county1"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/poppinslight"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/rounded_border_edittext"
-        android:hint="Sub County"
         android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/textViewghgh2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/location1"
+        android:layout_alignStart="@+id/location1"
+        android:fontFamily="@font/poppinslight"
+        android:layout_marginBottom="-30dp"
+        android:text="Your Sub County"
+        android:layout_alignLeft="@+id/location1" />
+
     <EditText
         android:id="@+id/location1"
         android:layout_width="276dp"
@@ -87,9 +148,8 @@
         android:layout_below="@+id/subcounty1"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/poppinslight"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/rounded_border_edittext"
-        android:hint="Location"
         android:inputType="textPersonName" />
 
     <Button
@@ -103,6 +163,10 @@
         android:background="@drawable/rounded_border_button"
         android:text="Update"
         android:textColor="#fff" />
+
+    </RelativeLayout>
+
+    </ScrollView>
 
 
 </RelativeLayout>

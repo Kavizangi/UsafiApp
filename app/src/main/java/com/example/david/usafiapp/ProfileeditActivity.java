@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,32 +52,16 @@ public class ProfileeditActivity extends AppCompatActivity {
         boolean isConnected = ConnectivityReceiver.isConnected(this);
 
         if (isConnected) {
-
             prepareData();
 
         }else{
 
-            Snackbar snackbar = Snackbar
-                    .make(findViewById(R.id.profileeditaddLayout), "Not connected to internet", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("RETRY", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
+            Intent homeIntent = new Intent(ProfileeditActivity.this, ProfileActivity.class);
+            startActivity(homeIntent);
 
-                            Intent homeIntent = new Intent(ProfileeditActivity.this, ProfileActivity.class);
-                            startActivity(homeIntent);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
-                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-                            finish();
-
-                        }
-                    });
-
-            // Changing message text color
-            snackbar.setActionTextColor(Color.RED);
-            snackbar.getView().setBackgroundColor(Color.rgb(0,0, 5));
-
-            snackbar.show();
+            finish();
 
         }
 

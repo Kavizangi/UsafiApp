@@ -12,11 +12,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
+import android.widget.RelativeLayout;
 
 public class SalesaddActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private WebView wvwz;
+    private RelativeLayout notconnected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,21 @@ public class SalesaddActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        boolean isConnected = ConnectivityReceiver.isConnected(this);
+
+        notconnected = (RelativeLayout) findViewById(R.id.notconnecteInternet);
         wvwz = (WebView)findViewById(R.id.wvwz);
+
+
+        if (!isConnected) {
+            notconnected.setVisibility(View.VISIBLE);
+            wvwz.setVisibility(View.GONE);
+        }else{
+            notconnected.setVisibility(View.GONE);
+            wvwz.setVisibility(View.VISIBLE);
+        }
+
+
 
         wvwz.setWebViewClient(new SalesaddActivity.WebViewClient(){
 
@@ -41,8 +57,11 @@ public class SalesaddActivity extends AppCompatActivity {
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
 
+                notconnected.setVisibility(View.VISIBLE);
+                wvwz.setVisibility(View.GONE);
+
                 Snackbar snackbar = Snackbar
-                        .make(findViewById(R.id.salesLayout), "Not connected to internet", Snackbar.LENGTH_INDEFINITE)
+                        .make(findViewById(R.id.salesaddLayout), "Not connected to internet", Snackbar.LENGTH_SHORT)
                         .setAction("RETRY", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {

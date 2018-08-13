@@ -49,6 +49,39 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:id="@+id/notconnecteInternet"
+        android:layout_below="@+id/my_toolbar"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/noInternet"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/internet" />
+
+        <TextView
+            android:id="@+id/textViewh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/noInternet"
+            android:layout_marginTop="50dp"
+            android:text="Oops, not connected to internet."
+            android:textColor="#40e553"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"/>
+
+    </RelativeLayout>
+
 
 
 </android.support.design.widget.CoordinatorLayout>

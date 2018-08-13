@@ -26,6 +26,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -134,9 +135,8 @@ public class ProfileActivity extends AppCompatActivity {
                 prepareData();
 
             }else{
-
                 Snackbar snackbar = Snackbar
-                        .make(findViewById(R.id.profileLayout), "Not connected to internet", Snackbar.LENGTH_INDEFINITE)
+                        .make(findViewById(R.id.profileLayout), "Not connected to internet", Snackbar.LENGTH_SHORT)
                         .setAction("RETRY", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {

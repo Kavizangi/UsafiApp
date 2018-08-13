@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,10 +53,10 @@ public class CommisionsActivity extends AppCompatActivity {
 
 
         if (isConnected) {
-
             prepareData();
 
         }else{
+
 
             Snackbar snackbar = Snackbar
                     .make(findViewById(R.id.commisionLayout), "Not connected to internet", Snackbar.LENGTH_INDEFINITE)
