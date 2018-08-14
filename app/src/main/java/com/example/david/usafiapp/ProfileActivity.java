@@ -323,7 +323,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                             }
 
-                            ImageView prof_pic = (ImageView) findViewById(R.id.profile);
+                            /*ImageView prof_pic = (ImageView) findViewById(R.id.profile);
 
                             prof_pic.setImageBitmap(bitmap);
 
@@ -339,7 +339,7 @@ public class ProfileActivity extends AppCompatActivity {
                             cv.put("pic", BitMapToString(bitmap));
                             dbs.update(TABLE_USER, cv, "uid="+id, null);
 
-                            dbs.close(); // Closing database connection
+                            dbs.close(); // Closing database connection*/
 
                             progressDialog.dismiss();
 
@@ -348,6 +348,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                             Toast.makeText(getApplicationContext(),
                                     "is null", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
 
                         }
 
@@ -357,6 +358,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                         Toast.makeText(getApplicationContext(),
                                 "Selecting picture cancelled", Toast.LENGTH_LONG).show();
+                        progressDialog.dismiss();
                     }
                     break;
             }
@@ -365,6 +367,7 @@ public class ProfileActivity extends AppCompatActivity {
 
             Toast.makeText(getApplicationContext(),
                     "Exception in onActivityResult : " + e.getMessage(), Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
 
         }
 

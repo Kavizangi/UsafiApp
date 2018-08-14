@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#40e553</color>
     <color name="colorPrimaryStartDark">#40e553</color>
     <color name="colorPrimaryStart">#3AFF52</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#3AFF52</color>
     <color name="input_login_hint">#999999</color>
     <color name="borderColor">#4A77D4</color>
     <color name="white">#fff</color>

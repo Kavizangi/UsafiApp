@@ -166,11 +166,20 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_logout:
                 logoutUser();
                 return true;
+            case R.id.action_chat:
+
+                // Launching the  activity
+                Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                finish();
+
+                return true;
             case R.id.action_account:
 
                 // Launching the  activity
-                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                startActivity(intent);
+                Intent fd = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(fd);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 finish();
 

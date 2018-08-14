@@ -8,13 +8,15 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    \
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name="app.AppController"
@@ -54,7 +56,8 @@
         <activity android:name=".SalesviewActivity" />
         <activity android:name=".CustomeraddActivity" />
         <activity android:name=".SalesaddActivity" />
-        <activity android:name=".ProfileeditActivity"></activity>
+        <activity android:name=".ProfileeditActivity" />
+        <activity android:name="com.example.david.usafiapp.ChatActivity"></activity>
     </application>
 
 </manifest>

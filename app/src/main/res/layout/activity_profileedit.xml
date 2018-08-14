@@ -39,7 +39,7 @@
         android:gravity="center"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="70dp"
         android:text="Edit your account info" />
 
     <TextView
@@ -138,7 +138,7 @@
         android:layout_alignStart="@+id/location1"
         android:fontFamily="@font/poppinslight"
         android:layout_marginBottom="-30dp"
-        android:text="Your Sub County"
+        android:text="Your Location"
         android:layout_alignLeft="@+id/location1" />
 
     <EditText
