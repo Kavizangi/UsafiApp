@@ -6,7 +6,7 @@
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="0dp"
-    android:background="@drawable/background">
+    android:background="#E5DDD5">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -26,7 +26,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:clipToPadding="false"
-        android:background="@drawable/background"
+        android:background="#E5DDD5"
         android:layout_below="@id/my_toolbar"
         android:focusableInTouchMode="true">
 
